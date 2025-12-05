@@ -2,7 +2,7 @@ import tomllib
 
 
 class Settings:
-    config_file_url = 'app_config.toml'
+    config_file_url = 'src/app_config.toml'
 
     # Атрибуты, которые будут инициализированы
     is_debug: bool
