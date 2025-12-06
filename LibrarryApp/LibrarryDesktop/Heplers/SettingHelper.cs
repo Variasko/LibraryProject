@@ -4,7 +4,7 @@ using LibrarryDesktop.Models.Settings;
 using LibrarryDesktop.Statics;
 using Newtonsoft.Json;
 
-namespace LibrarryDesktop.Helers
+namespace LibrarryDesktop.Helpers
 {
     public class SettingHelper
     {

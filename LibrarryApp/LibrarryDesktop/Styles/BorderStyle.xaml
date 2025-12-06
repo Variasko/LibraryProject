@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ######################## -->
+    <!-- # Стили для Border # -->
+    <!-- ######################## -->
+
+    <!-- Стиль по умолчанию для карточек или выделения -->
+    <Style TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource BorderBackground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <!-- Немного больше, чем у кнопок -->
+        <Setter Property="Padding" Value="10" />
+    </Style>
+
+</ResourceDictionary>

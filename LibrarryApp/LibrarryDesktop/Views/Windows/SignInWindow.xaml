@@ -3,10 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:LibrarryDesktop.ViewModels"
         xmlns:local="clr-namespace:LibrarryDesktop.Views.Windows"
         mc:Ignorable="d"
-        Title="SignInWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Title}" Height="400" Width="400"
+        Background="{DynamicResource ApplicationBackground}">
+    <d:Window.DataContext>
+        <vm:SignInWindowViewModel/>
+    </d:Window.DataContext>
+
     <Grid>
-        
+        <Border VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <StackPanel>
+
+                <TextBlock Style="{DynamicResource TitleTextBlockStyle}"
+                           Text="Авторизация"
+                           Margin="20 5 20 30"/>
+
+                <TextBox Name="LoginEnter"
+                         Tag="Логин"
+                         Text="{Binding Login}"
+                         Margin="0 0 0 10"/>
+                <PasswordBox Name="PasswordEnter"
+                             Tag="Пароль"
+                             PasswordChanged="OnPasswordChanged"
+                             Margin="0 0 0 10"/>
+
+                <Button Content="Войти"
+                        Style="{DynamicResource AcceptButtonStyle}"
+                        Command="{Binding SignInCommand}"/>
+
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
