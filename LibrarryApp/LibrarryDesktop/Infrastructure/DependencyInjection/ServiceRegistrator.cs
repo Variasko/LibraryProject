@@ -26,6 +26,7 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
         {
             services.AddTransient<SignInWindowViewModel>();
             services.AddTransient<MainWindowViewModel>();
+            services.AddTransient<ViewTestWindowViewModel>();
             return services;
         }
 
@@ -39,6 +40,11 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
             services.AddTransient(sp => new MainWindow
             {
                 DataContext = sp.GetRequiredService<MainWindowViewModel>()
+            });
+
+            services.AddTransient(sp => new ViewTestWindow
+            {
+                DataContext = sp.GetRequiredService<ViewTestWindowViewModel>()
             });
 
             return services;

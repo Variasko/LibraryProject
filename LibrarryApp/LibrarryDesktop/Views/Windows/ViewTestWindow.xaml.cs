@@ -1,5 +1,4 @@
-﻿using LibrarryDesktop.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,23 +15,13 @@ using System.Windows.Shapes;
 namespace LibrarryDesktop.Views.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для SignInWindow.xaml
+    /// Логика взаимодействия для ViewTestWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window
+    public partial class ViewTestWindow : Window
     {
-        public SignInWindow()
+        public ViewTestWindow()
         {
             InitializeComponent();
         }
-
-
-        public void OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is SignInWindowViewModel vm)
-            {
-                vm.Password = PasswordEnter.Password;
-            }
-        }
-
     }
 }

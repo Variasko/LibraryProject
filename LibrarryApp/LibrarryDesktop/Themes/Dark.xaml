@@ -1,0 +1,88 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ######################## -->
+    <!-- # Цвета для тёмной темы # -->
+    <!-- ######################## -->
+
+    <!-- TextBox -->
+    <SolidColorBrush x:Key="TextBoxBackground" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#3E3E3E" />
+    <SolidColorBrush x:Key="TextBoxForeground" Color="#E9ECEF" />
+    <SolidColorBrush x:Key="TextBoxHintForeground" Color="#ADB5BD" />
+
+    <!-- Button -->
+    <SolidColorBrush x:Key="ButtonDefaultBackground" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="ButtonDefaultBorder" Color="#3E3E3E" />
+    <SolidColorBrush x:Key="ButtonDefaultForeground" Color="#E9ECEF" />
+    <SolidColorBrush x:Key="ButtonAcceptBackground" Color="#3A5A40" />
+    <SolidColorBrush x:Key="ButtonAcceptBorder" Color="#2E4B35" />
+    <SolidColorBrush x:Key="ButtonAcceptForeground" Color="#DFF0D8" />
+    <SolidColorBrush x:Key="ButtonSaveBackground" Color="#2C4A5F" />
+    <SolidColorBrush x:Key="ButtonSaveBorder" Color="#223B4C" />
+    <SolidColorBrush x:Key="ButtonSaveForeground" Color="#D6E9F9" />
+    <SolidColorBrush x:Key="ButtonCancelBackground" Color="#343A40" />
+    <SolidColorBrush x:Key="ButtonCancelBorder" Color="#495057" />
+    <SolidColorBrush x:Key="ButtonCancelForeground" Color="#ADB5BD" />
+    <SolidColorBrush x:Key="ButtonDeleteBackground" Color="#5F3B3B" />
+    <SolidColorBrush x:Key="ButtonDeleteBorder" Color="#4C2F2F" />
+    <SolidColorBrush x:Key="ButtonDeleteForeground" Color="#F8D7DA" />
+
+    <!-- TextBlock -->
+    <SolidColorBrush x:Key="TextBlockForeground" Color="#E9ECEF" />
+    <SolidColorBrush x:Key="TextBlockTitleForeground" Color="#F8F9FA" />
+    <SolidColorBrush x:Key="TextBlockSubtitleForeground" Color="#CED4DA" />
+    <SolidColorBrush x:Key="TextBlockLabelForeground" Color="#ADB5BD" />
+
+    <!-- Border -->
+    <SolidColorBrush x:Key="BorderBrush" Color="#343A40" />
+    <SolidColorBrush x:Key="BorderBackground" Color="#1E1E1E" />
+
+    <!-- GroupBox -->
+    <SolidColorBrush x:Key="GroupBoxBorderBrush" Color="#343A40" />
+    <SolidColorBrush x:Key="GroupBoxHeaderForeground" Color="#F8F9FA" />
+    <SolidColorBrush x:Key="GroupBoxBackground" Color="#1E1E1E" />
+
+    <!-- ToggleButton -->
+    <SolidColorBrush x:Key="ToggleButtonUncheckedBackground" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="ToggleButtonUncheckedBorderBrush" Color="#3E3E3E" />
+    <SolidColorBrush x:Key="ToggleButtonCheckedBackground" Color="#4CAF50" />
+    <SolidColorBrush x:Key="ToggleButtonCheckedBorderBrush" Color="#388E3C" />
+    <SolidColorBrush x:Key="ToggleButtonForeground" Color="#E9ECEF" />
+
+    <!-- ComboBox -->
+    <SolidColorBrush x:Key="ComboBoxBackground" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#3E3E3E" />
+    <SolidColorBrush x:Key="ComboBoxForeground" Color="#E9ECEF" />
+    <SolidColorBrush x:Key="ComboBoxPopupBackground" Color="#1E1E1E" />
+    <SolidColorBrush x:Key="ComboBoxItemForeground" Color="#E9ECEF" />
+    <SolidColorBrush x:Key="ComboBoxItemBackground" Color="#1E1E1E" />
+    <SolidColorBrush x:Key="ComboBoxItemHoverBackground" Color="#343A40" />
+
+    <!-- RadioButton -->
+    <SolidColorBrush x:Key="RadioButtonBackground" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="RadioButtonBorderBrush" Color="#3E3E3E" />
+    <SolidColorBrush x:Key="RadioButtonCheckedBackground" Color="#4CAF50" />
+    <SolidColorBrush x:Key="RadioButtonCheckedBorderBrush" Color="#388E3C" />
+    <SolidColorBrush x:Key="RadioButtonForeground" Color="#E9ECEF" />
+
+    <!-- ######################## -->
+    <!-- # Цвет фона приложения # -->
+    <!-- ######################## -->
+    <SolidColorBrush x:Key="ApplicationBackground" Color="#1E1E1E" />
+
+    <!-- ######################## -->
+    <!-- # Подключаем все стили # -->
+    <!-- ######################## -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/ButtonsStyle.xaml" />
+        <ResourceDictionary Source="/Styles/TextBoxBaseStyle.xaml" />
+        <ResourceDictionary Source="/Styles/TextBlockStyles.xaml" />
+        <ResourceDictionary Source="/Styles/BorderStyle.xaml" />
+        <ResourceDictionary Source="/Styles/GroupBoxStyle.xaml" />
+        <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml" />
+        <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="/Styles/RadioButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

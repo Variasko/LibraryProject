@@ -1,7 +1,7 @@
 ﻿using LibrarryDesktop.Models.Theme;
 using System.Windows;
 
-namespace LibrarryDesktop.Helers
+namespace LibrarryDesktop.Helpers
 {
     public class ThemeHelper
     {
@@ -9,7 +9,7 @@ namespace LibrarryDesktop.Helers
         {
             string themeName = theme.ToString();
 
-            Uri themeUri = new Uri($"Styles/{themeName}Theme.xaml", UriKind.Relative);
+            Uri themeUri = new Uri($"Themes/{themeName}.xaml", UriKind.Relative);
             ResourceDictionary resourceDictionary = (ResourceDictionary)Application.LoadComponent(themeUri);
 
             Application.Current.Resources.Clear();

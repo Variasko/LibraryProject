@@ -1,4 +1,4 @@
-﻿using LibrarryDesktop.Helers; // очепятка, менять не буду
+﻿using LibrarryDesktop.Helpers; // очепятка, менять не буду
 using LibrarryDesktop.Infrastructure.DependencyInjection;
 using LibrarryDesktop.Infrastructure.Services;
 using LibrarryDesktop.Statics;

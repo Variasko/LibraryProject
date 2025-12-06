@@ -1,0 +1,108 @@
+﻿<Window x:Class="LibrarryDesktop.Views.Windows.ViewTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibrarryDesktop.Views.Windows"
+        mc:Ignorable="d"
+        Title="ViewTestWindow" Height="450" Width="800" Background="{Binding ApplicationBackground}">
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <!-- ######################## -->
+            <!-- # Заголовок # -->
+            <!-- ######################## -->
+            <TextBlock Text="Тестовый стенд стилей" Style="{DynamicResource TitleTextBlockStyle}" Margin="0,0,0,20" HorizontalAlignment="Center" />
+
+            <!-- ######################## -->
+            <!-- # Кнопки # -->
+            <!-- ######################## -->
+            <GroupBox Header="Кнопки" Margin="0,0,0,20">
+                <WrapPanel Orientation="Horizontal">
+                    <Button Content="Базовая (по умолчанию)" Margin="5" />
+                    <Button Content="Подтверждение" Style="{DynamicResource AcceptButtonStyle}" Margin="5" />
+                    <Button Content="Сохранение" Style="{DynamicResource SaveButtonStyle}" Margin="5" />
+                    <Button Content="Отмена" Style="{DynamicResource CancelButtonStyle}" Margin="5" />
+                    <Button Content="Удаление" Style="{DynamicResource DeleteButtonStyle}" Margin="5" />
+                </WrapPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Поля ввода # -->
+            <!-- ######################## -->
+            <GroupBox Header="Поля ввода" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBox Tag="Введите логин..." Margin="0,5" />
+                    <PasswordBox Tag="Введите пароль..." Margin="0,5" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Текст # -->
+            <!-- ######################## -->
+            <GroupBox Header="Текст" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Обычный текст" Margin="0,5" />
+                    <TextBlock Text="Текст метки" Style="{DynamicResource LabelStyle}" Margin="0,5" />
+                    <TextBlock Text="Заголовок" Style="{DynamicResource TitleTextBlockStyle}" Margin="0,5" />
+                    <TextBlock Text="Подзаголовок" Style="{DynamicResource SubtitleTextBlockStyle}" Margin="0,5" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Выпадающий список # -->
+            <!-- ######################## -->
+            <GroupBox Header="ComboBox" Margin="0,0,0,20">
+                <StackPanel>
+                    <ComboBox Margin="0,5" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ComboBoxItem Content="Вариант 1" />
+                        <ComboBoxItem Content="Вариант 2" />
+                        <ComboBoxItem Content="Вариант 3" />
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Радио-кнопки # -->
+            <!-- ######################## -->
+            <GroupBox Header="RadioButton" Margin="0,0,0,20">
+                <StackPanel>
+                    <RadioButton Content="Вариант 1" Margin="0,5" />
+                    <RadioButton Content="Вариант 2" Margin="0,5" />
+                    <RadioButton Content="Вариант 3" Margin="0,5" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Переключатель # -->
+            <!-- ######################## -->
+            <GroupBox Header="ToggleButton" Margin="0,0,0,20">
+                <StackPanel>
+                    <ToggleButton Content="Переключатель" Margin="0,5" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # Карточка (Border) # -->
+            <!-- ######################## -->
+            <GroupBox Header="Border (например, карточка)" Margin="0,0,0,20">
+                <Border Margin="0,5">
+                    <StackPanel>
+                        <TextBlock Text="Это карточка" Style="{DynamicResource SubtitleTextBlockStyle}" />
+                        <TextBlock Text="С каким-то содержимым" />
+                    </StackPanel>
+                </Border>
+            </GroupBox>
+
+            <!-- ######################## -->
+            <!-- # GroupBox # -->
+            <!-- ######################## -->
+            <GroupBox Header="GroupBox (группировка)" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Это группа элементов" />
+                    <TextBlock Text="Внутри GroupBox" />
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>

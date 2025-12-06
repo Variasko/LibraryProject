@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ######################## -->
+    <!-- # Цвета для светлой темы — обновлённая версия -->
+    <!-- ######################## -->
+
+    <!-- TextBox -->
+    <SolidColorBrush x:Key="TextBoxBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#CED4DA" />
+    <!-- было #E9ECEF → темнее -->
+    <SolidColorBrush x:Key="TextBoxForeground" Color="#343A40" />
+    <!-- было #495057 → чуть темнее -->
+    <SolidColorBrush x:Key="TextBoxHintForeground" Color="#9CA3AF" />
+    <!-- живее, чем #ADB5BD -->
+
+    <!-- Button -->
+    <SolidColorBrush x:Key="ButtonDefaultBackground" Color="#F1F3F5" />
+    <!-- чуть глубже, чем #F8F9FA -->
+    <SolidColorBrush x:Key="ButtonDefaultBorder" Color="#CED4DA" />
+    <SolidColorBrush x:Key="ButtonDefaultForeground" Color="#343A40" />
+
+    <!-- Accept (успех) -->
+    <SolidColorBrush x:Key="ButtonAcceptBackground" Color="#D1E7DD" />
+    <!-- сочнее #DFF0D8 -->
+    <SolidColorBrush x:Key="ButtonAcceptBorder" Color="#A3C9A8" />
+    <SolidColorBrush x:Key="ButtonAcceptForeground" Color="#14532D" />
+
+    <!-- Save (инфо) -->
+    <SolidColorBrush x:Key="ButtonSaveBackground" Color="#CCEBFF" />
+    <!-- ярче и чище, чем #D6E9F9 -->
+    <SolidColorBrush x:Key="ButtonSaveBorder" Color="#99D4F7" />
+    <SolidColorBrush x:Key="ButtonSaveForeground" Color="#0A4A5A" />
+
+    <!-- Cancel (нейтральный) -->
+    <SolidColorBrush x:Key="ButtonCancelBackground" Color="#E9ECEF" />
+    <!-- раньше был почти белый -->
+    <SolidColorBrush x:Key="ButtonCancelBorder" Color="#ADB5BD" />
+    <SolidColorBrush x:Key="ButtonCancelForeground" Color="#495057" />
+
+    <!-- Delete (ошибка) -->
+    <SolidColorBrush x:Key="ButtonDeleteBackground" Color="#F5C6CB" />
+    <!-- теплее и заметнее, чем #F8D7DA -->
+    <SolidColorBrush x:Key="ButtonDeleteBorder" Color="#E6A7AE" />
+    <SolidColorBrush x:Key="ButtonDeleteForeground" Color="#66101F" />
+
+    <!-- TextBlock -->
+    <SolidColorBrush x:Key="TextBlockForeground" Color="#343A40" />
+    <SolidColorBrush x:Key="TextBlockTitleForeground" Color="#212529" />
+    <SolidColorBrush x:Key="TextBlockSubtitleForeground" Color="#495057" />
+    <SolidColorBrush x:Key="TextBlockLabelForeground" Color="#6C757D" />
+
+    <!-- Border -->
+    <SolidColorBrush x:Key="BorderBrush" Color="#CED4DA" />
+    <!-- чёткая, но не резкая рамка -->
+    <SolidColorBrush x:Key="BorderBackground" Color="#F8F9FA" />
+
+    <!-- GroupBox -->
+    <SolidColorBrush x:Key="GroupBoxBorderBrush" Color="#CED4DA" />
+    <SolidColorBrush x:Key="GroupBoxHeaderForeground" Color="#212529" />
+    <SolidColorBrush x:Key="GroupBoxBackground" Color="#FAFBFD" />
+
+    <!-- ToggleButton -->
+    <SolidColorBrush x:Key="ToggleButtonUncheckedBackground" Color="#F1F3F5" />
+    <SolidColorBrush x:Key="ToggleButtonUncheckedBorderBrush" Color="#CED4DA" />
+    <SolidColorBrush x:Key="ToggleButtonCheckedBackground" Color="#D1E7DD" />
+    <SolidColorBrush x:Key="ToggleButtonCheckedBorderBrush" Color="#A3C9A8" />
+    <SolidColorBrush x:Key="ToggleButtonForeground" Color="#343A40" />
+
+    <!-- ComboBox -->
+    <SolidColorBrush x:Key="ComboBoxBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#CED4DA" />
+    <SolidColorBrush x:Key="ComboBoxForeground" Color="#343A40" />
+    <SolidColorBrush x:Key="ComboBoxPopupBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxItemForeground" Color="#343A40" />
+    <SolidColorBrush x:Key="ComboBoxItemBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxItemHoverBackground" Color="#F1F3F5" />
+
+    <!-- RadioButton -->
+    <SolidColorBrush x:Key="RadioButtonBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="RadioButtonBorderBrush" Color="#CED4DA" />
+    <SolidColorBrush x:Key="RadioButtonCheckedBackground" Color="#4CAF50" />
+    <!-- оставим яркий акцент -->
+    <SolidColorBrush x:Key="RadioButtonCheckedBorderBrush" Color="#388E3C" />
+    <SolidColorBrush x:Key="RadioButtonForeground" Color="#343A40" />
+
+    <!-- ######################## -->
+    <!-- # Цвет фона приложения -->
+    <!-- ######################## -->
+    <SolidColorBrush x:Key="ApplicationBackground" Color="#F8F9FA" />
+
+    <!-- ######################## -->
+    <!-- # Подключаем все стили # -->
+    <!-- ######################## -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/ButtonsStyle.xaml" />
+        <ResourceDictionary Source="/Styles/TextBoxBaseStyle.xaml" />
+        <ResourceDictionary Source="/Styles/TextBlockStyles.xaml" />
+        <ResourceDictionary Source="/Styles/BorderStyle.xaml" />
+        <ResourceDictionary Source="/Styles/GroupBoxStyle.xaml" />
+        <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml" />
+        <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="/Styles/RadioButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

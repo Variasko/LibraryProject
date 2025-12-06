@@ -19,7 +19,7 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
             window.Show();
         }
 
-        public void SwithToMainWindow()
+        public void SwitchToMainWindow()
         {
             var main = _serviceProvider.GetRequiredService<MainWindow>();
             main.Show();
@@ -31,7 +31,7 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
             }
         }
 
-        public void SwithToSignInWindow()
+        public void SwitchToSignInWindow()
         {
             OpenSignInWindow();
 
@@ -40,6 +40,18 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
             foreach (Window window in Application.Current.Windows)
             {
                 if (window != signIn)
+                    window.Close();
+            }
+        }
+
+        public void SwitchToTestWindow()
+        {
+            var testWindow = _serviceProvider.GetRequiredService<ViewTestWindow>();
+            testWindow.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != testWindow)
                     window.Close();
             }
         }

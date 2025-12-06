@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="RadioButton">
+        <Setter Property="Background" Value="{DynamicResource RadioButtonBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource RadioButtonBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource RadioButtonForeground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="8,3" />
+        <!-- чуть больше отступа -->
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Grid Width="18" Height="18">
+                                <!-- Внешний круг (рамка) -->
+                                <Ellipse x:Name="OuterCircle"
+                                         Stroke="{TemplateBinding BorderBrush}"
+                                         StrokeThickness="2"
+                                         Fill="{TemplateBinding Background}" />
+
+                                <!-- Внутренний диск (активная метка) -->
+                                <Ellipse x:Name="CheckMark"
+                                         Width="10"
+                                         Height="10"
+                                         Fill="{DynamicResource RadioButtonCheckedBackground}"
+                                         Visibility="Hidden"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center" />
+                            </Grid>
+                        </BulletDecorator.Bullet>
+
+                        <ContentPresenter x:Name="Content"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </BulletDecorator>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Выбран -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            <!-- Делаем фон более насыщенным при выборе -->
+                            <Setter Property="Background" Value="{DynamicResource RadioButtonCheckedBackground}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource RadioButtonCheckedBorderBrush}" />
+                        </Trigger>
+
+                        <!-- Наведение (только если НЕ выбран) -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="OuterCircle" Property="Opacity" Value="0.8" />
+                        </MultiTrigger>
+
+                        <!-- Нажатие -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="OuterCircle" Property="Opacity" Value="0.6" />
+                        </Trigger>
+
+                        <!-- Отключено -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

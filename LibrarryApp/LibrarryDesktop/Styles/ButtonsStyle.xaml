@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ######################## -->
+    <!-- # Базовый шаблон (не используется напрямую) # -->
+    <!-- ######################## -->
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ######################## -->
+    <!-- # Стиль по умолчанию для обычных кнопок # -->
+    <!-- ######################## -->
+    <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultBorder}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultForeground}" />
+    </Style>
+
+    <!-- ######################## -->
+    <!-- # Стили для конкретных действий # -->
+    <!-- ######################## -->
+
+    <Style x:Key="AcceptButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource ButtonAcceptBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonAcceptBorder}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonAcceptForeground}" />
+    </Style>
+
+    <Style x:Key="SaveButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource ButtonSaveBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonSaveBorder}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonSaveForeground}" />
+    </Style>
+
+    <Style x:Key="CancelButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource ButtonCancelBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonCancelBorder}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonCancelForeground}" />
+    </Style>
+
+    <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource ButtonDeleteBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonDeleteBorder}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonDeleteForeground}" />
+    </Style>
+
+</ResourceDictionary>

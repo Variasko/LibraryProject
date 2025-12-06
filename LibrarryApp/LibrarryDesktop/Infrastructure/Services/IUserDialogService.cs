@@ -3,7 +3,8 @@
     public interface IUserDialogService
     {
         void OpenSignInWindow();
-        void SwithToSignInWindow();
-        void SwithToMainWindow();
+        void SwitchToSignInWindow();
+        void SwitchToMainWindow();
+        void SwitchToTestWindow();
     }
 }
