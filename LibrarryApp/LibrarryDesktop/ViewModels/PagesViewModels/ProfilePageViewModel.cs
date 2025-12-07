@@ -1,6 +1,8 @@
-﻿using LibrarryDesktop.Infrastructure.Services;
+﻿using LibrarryDesktop.Infrastructure.Command.Base.Sync;
+using LibrarryDesktop.Infrastructure.Services;
 using LibrarryDesktop.Statics;
 using LibrarryDesktop.ViewModels.Base;
+using System.Windows.Input;
 
 namespace LibrarryDesktop.ViewModels.PagesViewModels
 {
@@ -42,7 +44,6 @@ namespace LibrarryDesktop.ViewModels.PagesViewModels
 		}
 		#endregion
 
-
 		#region Patronymic : string - Отчество зашедшего
 
 		/// <summary> Отчество зашедшего </summary>
@@ -59,13 +60,49 @@ namespace LibrarryDesktop.ViewModels.PagesViewModels
 		}
 		#endregion
 
-		#endregion
+		#region PostName : string - Название должности зашедшего
 
-		#region Конструктор
-		public ProfilePageViewModel() { }
+		/// <summary> Название должности зашедшего </summary>
+		private string _postName = CurrentSession.CurrentPost.Name;
+
+		/// <summary> Название должности зашедшего </summary>
+		public string PostName
+		{
+			get { return _postName; }
+			set
+			{
+				Set(ref _postName, value);
+			}
+		}
+        #endregion
+
+        #endregion
+
+
+        #region Команды
+
+
+        #region SignOut
+        public ICommand SignOutCommand { get; }
+
+        private bool CanSignOutCommandExecute(object p) => true;
+        private void OnSignOutCommandExecute(object p)
+        {
+            _userDialogService.SwitchToSignInWindow();
+        }
+
+        #endregion
+
+
+        #endregion
+
+        #region Конструктор
+        public ProfilePageViewModel() { }
         public ProfilePageViewModel(IUserDialogService userDialogService)
         {
             _userDialogService = userDialogService;
+
+			SignOutCommand = new LambdaCommand(OnSignOutCommandExecute, CanSignOutCommandExecute);
         }
         private IUserDialogService _userDialogService;
         #endregion

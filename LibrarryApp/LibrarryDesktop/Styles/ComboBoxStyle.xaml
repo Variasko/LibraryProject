@@ -46,13 +46,13 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <!-- Центрируем текст выбранного элемента -->
+                                    <!-- Отображение выбранного элемента -->
                                     <ContentPresenter Grid.Column="0"
                                                       Content="{TemplateBinding SelectionBoxItem}"
                                                       ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                       ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
                                                       Margin="3,0,0,0"
                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                         <Path Grid.Column="1"
@@ -103,8 +103,9 @@
         <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemForeground}" />
         <Setter Property="Padding" Value="5,3" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <!-- ← тоже центрируем в списке, если нужно -->
+        <!-- Изменим выравнивание по умолчанию для элемента списка -->
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <!-- Изменено на Left -->
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>

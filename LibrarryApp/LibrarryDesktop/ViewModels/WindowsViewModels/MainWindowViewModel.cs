@@ -32,6 +32,23 @@ namespace LibrarryDesktop.ViewModels.WindowsViewModels
             }
         }
         #endregion
+
+        #region SettingsPage : Page - Страница настроек
+
+        /// <summary> Страница настроек </summary>
+        private Page _settingsPage;
+
+        /// <summary> Страница настроек </summary>
+        public Page SettingsPage
+        {
+            get { return _settingsPage; }
+            set
+            {
+                Set(ref _settingsPage, value);
+            }
+        }
+        #endregion
+
         #endregion
 
         #endregion
@@ -44,6 +61,7 @@ namespace LibrarryDesktop.ViewModels.WindowsViewModels
             _userDialogService = userDialogService;
 
             _profilePage = _userDialogService.GetProfilePage();
+            _settingsPage = _userDialogService.GetSettingsPage();
         }
         private IUserDialogService _userDialogService;
         #endregion

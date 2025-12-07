@@ -1,4 +1,5 @@
-﻿using LibrarryDesktop.Infrastructure.Services;
+﻿using LibrarryDesktop.Helpers;
+using LibrarryDesktop.Infrastructure.Services;
 using LibrarryDesktop.Infrastructure.Services.Implementation;
 using LibrarryDesktop.Statics;
 using LibrarryDesktop.ViewModels.PagesViewModels;
@@ -26,6 +27,8 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
         private static IServiceCollection RegisterCoreServices(this IServiceCollection services)
         {
             services.AddSingleton<IUserDialogService, UserDialogService>();
+            services.AddSingleton<ThemeHelper>();
+            services.AddSingleton<SettingHelper>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
             return services;
         }
@@ -49,6 +52,7 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
         private static IServiceCollection RegisterApiServices(this IServiceCollection services)
         {
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IPostService, PostService>();
 
             return services;
         }
@@ -60,6 +64,7 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
             services.AddTransient<ViewTestWindowViewModel>();
 
             services.AddTransient<ProfilePageViewModel>();
+            services.AddTransient<SettingsPageViewModel>();
 
             return services;
         }
@@ -89,6 +94,10 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
             services.AddTransient(sp => new ProfilePage
             {
                 DataContext = sp.GetRequiredService<ProfilePageViewModel>()
+            });
+            services.AddTransient(sp => new SettingsPage
+            {
+                DataContext = sp.GetRequiredService<SettingsPageViewModel>()
             });
 
             return services;

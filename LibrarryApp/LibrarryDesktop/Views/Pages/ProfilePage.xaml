@@ -17,10 +17,30 @@
                 HorizontalAlignment="Center"
                 Padding="15">
             <StackPanel>
-                <TextBlock Text="{Binding Surname}" Margin="10 0 10 10"/>
-                <TextBlock Text="{Binding Name}" Margin="10 0 10 10"/>
-                <TextBlock Text="{Binding Patronymic}" Margin="10 0 10 10"/>
+                <TextBlock Text="Здравствуйте,"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource TitleTextBlockStyle}"/>
+                <TextBlock Margin="10"
+                           Style="{DynamicResource TitleTextBlockStyle}">
+                    <Run Text="{Binding Surname}"/>
+                    <Run Text="{Binding Name}"/>
+                    <Run Text="{Binding Patronymic}"/>
+                    <Run Text="!"/>
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Center">
+                    <Run Text="Ваша должность: "/>
+                    <Run Text="{Binding PostName}"/>
+                </TextBlock>
             </StackPanel>
         </Border>
+
+        <Button VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="20"
+                Content="Выйти"
+                Style="{DynamicResource CancelButtonStyle}"
+                Command="{Binding SignOutCommand}"/>
+
     </Grid>
 </Page>

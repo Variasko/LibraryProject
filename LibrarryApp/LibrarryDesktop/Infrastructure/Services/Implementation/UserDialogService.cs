@@ -35,8 +35,6 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
 
         public void SwitchToSignInWindow()
         {
-            OpenSignInWindow();
-
             var signIn = _serviceProvider.GetRequiredService<SignInWindow>();
 
             foreach (Window window in Application.Current.Windows)
@@ -44,6 +42,8 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
                 if (window != signIn)
                     window.Close();
             }
+
+            OpenSignInWindow();
         }
 
         public void SwitchToTestWindow()
@@ -60,6 +60,10 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
         public Page GetProfilePage()
         {
             return _serviceProvider.GetRequiredService<ProfilePage>();
+        }
+        public Page GetSettingsPage()
+        {
+            return _serviceProvider.GetRequiredService<SettingsPage>();
         }
     }
 }

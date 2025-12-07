@@ -17,12 +17,14 @@
         <TabItem Header="Профиль">
             <Frame Margin="20"
                    Content="{Binding ProfilePage}"
-                   NavigationUIVisibility="Hidden"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   NavigationUIVisibility="Hidden"/>
         </TabItem>
         <TabItem Header="2"/>
-        <TabItem Header="3"/>
+        <TabItem Header="Настройки">
+            <Frame Margin="20"
+                   Content="{Binding SettingsPage}"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
     </TabControl>
     
 </Window>

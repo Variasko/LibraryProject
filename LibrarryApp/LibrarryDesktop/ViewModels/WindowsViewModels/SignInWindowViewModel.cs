@@ -2,6 +2,7 @@
 using LibrarryDesktop.Infrastructure.Command.Base.Async;
 using LibrarryDesktop.Infrastructure.Services;
 using LibrarryDesktop.Models.ApiRequestModels;
+using LibrarryDesktop.Models.ApiResponceModels;
 using LibrarryDesktop.Statics;
 using LibrarryDesktop.ViewModels.Base;
 using System.Net.Http;
@@ -76,7 +77,11 @@ namespace LibrarryDesktop.ViewModels.WindowsViewModels
                     _messageBoxHelper.ShowError("Неверный логин или пароль!");
                     return;
                 }
+                Post post = await _postService.GetPostById(employee.PostId ?? -1);
+
                 CurrentSession.CurrentEmployee = employee;
+                CurrentSession.CurrentPost = post;
+
                 _userDialogService.SwitchToMainWindow();
             }
             catch (HttpRequestException ex)
@@ -97,13 +102,15 @@ namespace LibrarryDesktop.ViewModels.WindowsViewModels
         public SignInWindowViewModel() { }
         public SignInWindowViewModel(
 				IUserDialogService userDialogService,
-				IAuthService authService
+				IAuthService authService,
+                IPostService postService
 			)
         {
 			_messageBoxHelper = new MessageBoxHelper();
 
             _userDialogService = userDialogService;
 			_authService = authService;
+            _postService = postService;
 
 			SignInCommand = new LambdaAsyncCommand(OnSignInCommandExecute, CanSignInCommandExecute);
         }
@@ -111,6 +118,7 @@ namespace LibrarryDesktop.ViewModels.WindowsViewModels
 
         private IUserDialogService _userDialogService;
 		private IAuthService _authService;
+        private IPostService _postService;
         #endregion
 
     }

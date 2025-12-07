@@ -14,6 +14,11 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
             _settingHelper.ApplySettings();
         }
 
+        public void ApplySettings()
+        {
+            _settingHelper.ApplySettings();
+        }
+
         public void SaveSettings()
         {
             _settingHelper.SaveSettings();

@@ -9,5 +9,6 @@ namespace LibrarryDesktop.Infrastructure.Services
         void SwitchToMainWindow();
         void SwitchToTestWindow();
         Page GetProfilePage();
+        Page GetSettingsPage();
     }
 }

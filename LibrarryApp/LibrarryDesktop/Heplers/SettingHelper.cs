@@ -8,7 +8,14 @@ namespace LibrarryDesktop.Helpers
 {
     public class SettingHelper
     {
+        private readonly ThemeHelper _themeHelper;
         private const string _settingUri = "settings.json";
+
+        public SettingHelper(ThemeHelper theme)
+        {
+            _themeHelper = theme;
+        }
+
         public SettingsModel LoadSettings()
         {
             var data = File.ReadAllText(_settingUri);
@@ -24,6 +31,7 @@ namespace LibrarryDesktop.Helpers
         {
             SettingsModel settings = LoadSettings();
             CurrentSettings.Settings = settings;
+            _themeHelper.ChangeTheme(CurrentSettings.Settings.Theme);
         }
     }
 }
