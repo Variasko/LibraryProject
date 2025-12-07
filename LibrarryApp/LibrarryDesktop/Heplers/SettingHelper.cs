@@ -23,7 +23,7 @@ namespace LibrarryDesktop.Helpers
         public void ApplySettings()
         {
             SettingsModel settings = LoadSettings();
-            Settings.CurrentSettings = settings;
+            CurrentSettings.Settings = settings;
         }
     }
 }

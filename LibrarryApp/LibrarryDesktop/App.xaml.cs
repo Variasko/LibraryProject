@@ -18,7 +18,7 @@ public partial class App : Application
         base.OnStartup(e);
 
         _sh.ApplySettings();
-        _th.ChangeTheme(Settings.CurrentSettings.Theme);
+        _th.ChangeTheme(CurrentSettings.Settings.Theme);
 
         _serviceProvider = InitializeServices();
         _serviceProvider.GetRequiredService<IUserDialogService>().OpenSignInWindow();

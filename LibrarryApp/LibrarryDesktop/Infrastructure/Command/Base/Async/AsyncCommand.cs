@@ -1,9 +1,12 @@
 ﻿using System.Windows.Input;
 
-namespace LibrarryDesktop.Infrastructure.Command.Base
+namespace LibrarryDesktop.Infrastructure.Command.Base.Async
 {
-    public abstract class Command : ICommand
+    public abstract class AsyncCommand : ICommand
     {
+        /// <summary>
+        /// Абстрактный класс для асинхронной команды.
+        /// </summary>
         public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
@@ -11,7 +14,6 @@ namespace LibrarryDesktop.Infrastructure.Command.Base
         }
 
         public abstract bool CanExecute(object? parameter);
-
         public abstract void Execute(object? parameter);
     }
 }

@@ -5,5 +5,6 @@ namespace LibrarryDesktop.Models.Settings
     public class SettingsModel
     {
         public ThemeEnum Theme { get; set; }
+        public ApiSettings Api { get; set; }
     }
 }

@@ -1,6 +1,10 @@
-﻿using CuratorJournal.Desktop.Infrastructure.Commands;
+﻿using LibrarryDesktop.Heplers;
+using LibrarryDesktop.Infrastructure.Command.Base.Async;
 using LibrarryDesktop.Infrastructure.Services;
+using LibrarryDesktop.Models.ApiRequestModels;
+using LibrarryDesktop.Statics;
 using LibrarryDesktop.ViewModels.Base;
+using System.Net.Http;
 using System.Windows.Input;
 
 namespace LibrarryDesktop.ViewModels
@@ -58,10 +62,28 @@ namespace LibrarryDesktop.ViewModels
 		public ICommand SignInCommand { get; }
 
 		private bool CanSignInCommandExecute(object p)
-			=> !string.IsNullOrEmpty(_login) || !string.IsNullOrEmpty(_password);
-		private void OnSignInCommandExecute(object p)
+			=> !string.IsNullOrWhiteSpace(_login) || !string.IsNullOrWhiteSpace(_password);
+		private async Task OnSignInCommandExecute(object p)
 		{
-			_userDialogService.SwitchToMainWindow();
+            AuthModel authRequest = new AuthModel { Login = _login, Password = _password };
+
+			try
+			{
+				var employee = await _authService.AuthAsync(authRequest);
+				if (employee == null)
+				{
+					_messageBoxHelper.ShowError("Неверный логин или пароль!");
+					return;
+				}
+				CurrentSession.CurrentEmployee = employee;
+				_userDialogService.SwitchToMainWindow();
+			} catch (HttpRequestException ex)
+			{
+				_messageBoxHelper.ShowError($"Ошибка подключения к серверу: {ex.Message}");
+			} catch (Exception ex)
+			{
+				_messageBoxHelper.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
+			}
 		}
 
 
@@ -70,12 +92,22 @@ namespace LibrarryDesktop.ViewModels
 
 		#region Конструктор
 		public SignInWindowViewModel() { }
-        public SignInWindowViewModel(IUserDialogService userDialogService)
+        public SignInWindowViewModel(
+				IUserDialogService userDialogService,
+				IAuthService authService
+			)
         {
+			_messageBoxHelper = new MessageBoxHelper();
+
             _userDialogService = userDialogService;
-			SignInCommand = new LambdaCommand(OnSignInCommandExecute, CanSignInCommandExecute);
+			_authService = authService;
+
+			SignInCommand = new LambdaAsyncCommand(OnSignInCommandExecute, CanSignInCommandExecute);
         }
+		private MessageBoxHelper _messageBoxHelper;
+
         private IUserDialogService _userDialogService;
+		private IAuthService _authService;
         #endregion
 
 
