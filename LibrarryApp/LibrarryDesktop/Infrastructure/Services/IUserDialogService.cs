@@ -1,4 +1,6 @@
-﻿namespace LibrarryDesktop.Infrastructure.Services
+﻿using System.Windows.Controls;
+
+namespace LibrarryDesktop.Infrastructure.Services
 {
     public interface IUserDialogService
     {
@@ -6,5 +8,6 @@
         void SwitchToSignInWindow();
         void SwitchToMainWindow();
         void SwitchToTestWindow();
+        Page GetProfilePage();
     }
 }

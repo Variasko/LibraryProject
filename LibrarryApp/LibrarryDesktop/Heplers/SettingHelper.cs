@@ -15,9 +15,9 @@ namespace LibrarryDesktop.Helpers
             SettingsModel settings = JsonConvert.DeserializeObject<SettingsModel>(data);
             return settings;
         }
-        public void SaveSettings(SettingsModel settings)
+        public void SaveSettings()
         {
-            var json = JsonConvert.SerializeObject(settings);
+            var json = JsonConvert.SerializeObject(CurrentSettings.Settings);
             File.WriteAllText(_settingUri, json);
         }
         public void ApplySettings()

@@ -1,7 +1,9 @@
 ﻿using LibrarryDesktop.Infrastructure.Services;
 using LibrarryDesktop.Infrastructure.Services.Implementation;
 using LibrarryDesktop.Statics;
-using LibrarryDesktop.ViewModels;
+using LibrarryDesktop.ViewModels.PagesViewModels;
+using LibrarryDesktop.ViewModels.WindowsViewModels;
+using LibrarryDesktop.Views.Pages;
 using LibrarryDesktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
@@ -17,7 +19,8 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
                 .RegisterHttpClient()
                 .RegisterApiServices()
                 .RegisterViewModels()
-                .RegisterWindows();
+                .RegisterWindows()
+                .RegisterPages();
         }
 
         private static IServiceCollection RegisterCoreServices(this IServiceCollection services)
@@ -55,6 +58,9 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
             services.AddTransient<SignInWindowViewModel>();
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ViewTestWindowViewModel>();
+
+            services.AddTransient<ProfilePageViewModel>();
+
             return services;
         }
 
@@ -73,6 +79,16 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
             services.AddTransient(sp => new ViewTestWindow
             {
                 DataContext = sp.GetRequiredService<ViewTestWindowViewModel>()
+            });
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterPages(this IServiceCollection services)
+        {
+            services.AddTransient(sp => new ProfilePage
+            {
+                DataContext = sp.GetRequiredService<ProfilePageViewModel>()
             });
 
             return services;

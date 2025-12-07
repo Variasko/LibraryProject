@@ -7,7 +7,7 @@ using LibrarryDesktop.ViewModels.Base;
 using System.Net.Http;
 using System.Windows.Input;
 
-namespace LibrarryDesktop.ViewModels
+namespace LibrarryDesktop.ViewModels.WindowsViewModels
 {
     public class SignInWindowViewModel : BaseViewModel
     {
@@ -50,48 +50,51 @@ namespace LibrarryDesktop.ViewModels
 				Set(ref _password, value);
 			}
 		}
-		#endregion
+        #endregion
 
 
-		#endregion
+        #endregion
 
 
-		#region Команды
+        #region Команды
 
 
-		public ICommand SignInCommand { get; }
+        #region SignIn
+        public ICommand SignInCommand { get; }
 
-		private bool CanSignInCommandExecute(object p)
-			=> !string.IsNullOrWhiteSpace(_login) || !string.IsNullOrWhiteSpace(_password);
-		private async Task OnSignInCommandExecute(object p)
-		{
+        private bool CanSignInCommandExecute(object p)
+            => !string.IsNullOrWhiteSpace(_login) || !string.IsNullOrWhiteSpace(_password);
+        private async Task OnSignInCommandExecute(object p)
+        {
             AuthModel authRequest = new AuthModel { Login = _login, Password = _password };
 
-			try
-			{
-				var employee = await _authService.AuthAsync(authRequest);
-				if (employee == null)
-				{
-					_messageBoxHelper.ShowError("Неверный логин или пароль!");
-					return;
-				}
-				CurrentSession.CurrentEmployee = employee;
-				_userDialogService.SwitchToMainWindow();
-			} catch (HttpRequestException ex)
-			{
-				_messageBoxHelper.ShowError($"Ошибка подключения к серверу: {ex.Message}");
-			} catch (Exception ex)
-			{
-				_messageBoxHelper.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
-			}
-		}
+            try
+            {
+                var employee = await _authService.AuthAsync(authRequest);
+                if (employee == null)
+                {
+                    _messageBoxHelper.ShowError("Неверный логин или пароль!");
+                    return;
+                }
+                CurrentSession.CurrentEmployee = employee;
+                _userDialogService.SwitchToMainWindow();
+            }
+            catch (HttpRequestException ex)
+            {
+                _messageBoxHelper.ShowError($"Ошибка подключения к серверу: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                _messageBoxHelper.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #endregion
 
 
-		#endregion
-
-
-		#region Конструктор
-		public SignInWindowViewModel() { }
+        #region Конструктор
+        public SignInWindowViewModel() { }
         public SignInWindowViewModel(
 				IUserDialogService userDialogService,
 				IAuthService authService
@@ -109,7 +112,6 @@ namespace LibrarryDesktop.ViewModels
         private IUserDialogService _userDialogService;
 		private IAuthService _authService;
         #endregion
-
 
     }
 }

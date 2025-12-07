@@ -83,6 +83,7 @@
         <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml" />
         <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
         <ResourceDictionary Source="/Styles/RadioButtonStyle.xaml" />
+        <ResourceDictionary Source="/Styles/TabControlStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

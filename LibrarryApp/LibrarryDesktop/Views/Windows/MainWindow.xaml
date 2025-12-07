@@ -4,9 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibrarryDesktop.Views.Windows"
+        xmlns:vm="clr-namespace:LibrarryDesktop.ViewModels.WindowsViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="{Binding Title}" Height="600" Width="1000"
+        Background="{DynamicResource ApplicationBackground}">
+
+    <d:Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </d:Window.DataContext>
+
+    <TabControl>
+        <TabItem Header="Профиль">
+            <Frame Margin="20"
+                   Content="{Binding ProfilePage}"
+                   NavigationUIVisibility="Hidden"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        </TabItem>
+        <TabItem Header="2"/>
+        <TabItem Header="3"/>
+    </TabControl>
+    
 </Window>

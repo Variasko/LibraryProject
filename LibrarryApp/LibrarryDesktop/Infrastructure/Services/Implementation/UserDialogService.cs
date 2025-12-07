@@ -1,6 +1,8 @@
-﻿using LibrarryDesktop.Views.Windows;
+﻿using LibrarryDesktop.Views.Pages;
+using LibrarryDesktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace LibrarryDesktop.Infrastructure.Services.Implementation
 {
@@ -54,6 +56,10 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
                 if (window != testWindow)
                     window.Close();
             }
+        }
+        public Page GetProfilePage()
+        {
+            return _serviceProvider.GetRequiredService<ProfilePage>();
         }
     }
 }

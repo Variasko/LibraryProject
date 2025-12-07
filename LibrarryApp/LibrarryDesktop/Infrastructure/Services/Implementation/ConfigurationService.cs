@@ -14,11 +14,9 @@ namespace LibrarryDesktop.Infrastructure.Services.Implementation
             _settingHelper.ApplySettings();
         }
 
-        public SettingsModel Setting => CurrentSettings.Settings;
-
         public void SaveSettings()
         {
-            _settingHelper.SaveSettings(Setting);
+            _settingHelper.SaveSettings();
         }
     }
 }
