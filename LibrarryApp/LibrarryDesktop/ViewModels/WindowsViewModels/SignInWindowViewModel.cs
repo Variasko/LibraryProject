@@ -5,6 +5,7 @@ using LibraryDesktop.Models.ApiResponceModels;
 using LibraryDesktop.Statics;
 using LibraryDesktop.ViewModels.Base;
 using LibraryDesktop.Views.Windows;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Windows.Input;
 
@@ -12,66 +13,40 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
 {
     public class SignInWindowViewModel : BaseViewModel
     {
+        public string Title { get; } = "Авторизация";
 
-		#region Title : string - Заголовок окна
-		public string Title { get; } = "Авторизация";
-		#endregion
+        private readonly IMessageBoxService _messageBoxService;
+        private readonly IUserDialogService _userDialogService;
+        private readonly IAuthService _authService;
 
+        public string? Login { get; set; }
+        public string? Password { get; set; }
 
-		#region Свойства
-
-
-		#region Login : string - Логин пользователя
-
-		/// <summary> Логин пользователя </summary>
-		private string _login;
-
-		/// <summary> Логин пользователя </summary>
-		public string Login
-		{
-			get { return _login; }
-			set
-			{
-				Set(ref _login, value);
-			}
-		}
-		#endregion
-
-		#region Password : string - Пароль пользователя
-
-		/// <summary> Пароль пользователя </summary>
-		private string _password;
-
-		/// <summary> Пароль пользователя </summary>
-		public string Password
-		{
-			get { return _password; }
-			set
-			{
-				Set(ref _password, value);
-			}
-		}
-        #endregion
-
-
-        #endregion
-
-
-        #region Команды
-
-
-        #region SignIn
         public ICommand SignInCommand { get; }
 
-        private bool CanSignInCommandExecute(object p)
-            => !string.IsNullOrWhiteSpace(_login) || !string.IsNullOrWhiteSpace(_password);
-        private async Task OnSignInCommandExecute(object p)
-        {
-            AuthModel authRequest = new AuthModel { Login = _login, Password = _password };
+        public SignInWindowViewModel() { }
 
+        public SignInWindowViewModel(
+            IUserDialogService userDialogService,
+            IMessageBoxService messageBoxService,
+            IAuthService authService)
+        {
+            _userDialogService = userDialogService;
+            _messageBoxService = messageBoxService;
+            _authService = authService;
+
+            SignInCommand = new LambdaAsyncCommand(OnSignInCommandExecute, CanSignInCommandExecute);
+        }
+
+        private bool CanSignInCommandExecute(object _) =>
+            !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password); // ← оба поля нужны!
+
+        private async Task OnSignInCommandExecute(object _)
+        {
             try
             {
-                var employee = await _authService.AuthAsync(authRequest);
+                var employee = await _authService.AuthAsync(new AuthModel { Login = Login!, Password = Password! });
+
                 if (employee == null)
                 {
                     _messageBoxService.ShowError("Неверный логин или пароль!");
@@ -79,7 +54,6 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
                 }
 
                 CurrentSession.CurrentEmployee = employee;
-
                 _userDialogService.SwitchWindow<MainWindow>();
             }
             catch (HttpRequestException ex)
@@ -91,34 +65,5 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
                 _messageBoxService.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
             }
         }
-        #endregion
-
-        #endregion
-
-
-        #region Конструктор
-        public SignInWindowViewModel() { }
-        public SignInWindowViewModel(
-				IUserDialogService userDialogService,
-                IMessageBoxService messageBoxService,
-				IAuthService authService,
-                IPostService postService
-			)
-        {
-            _messageBoxService = messageBoxService;
-            _userDialogService = userDialogService;
-			_authService = authService;
-            _postService = postService;
-
-			SignInCommand = new LambdaAsyncCommand(OnSignInCommandExecute, CanSignInCommandExecute);
-        }
-
-        private IUserDialogService _userDialogService;
-        private IMessageBoxService _messageBoxService;
-
-		private IAuthService _authService;
-        private IPostService _postService;
-        #endregion
-
     }
 }

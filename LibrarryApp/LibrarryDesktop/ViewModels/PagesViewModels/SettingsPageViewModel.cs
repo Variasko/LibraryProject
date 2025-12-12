@@ -1,5 +1,4 @@
-﻿using LibraryDesktop.Helpers;
-using LibraryDesktop.Infrastructure.Command.Base.Sync;
+﻿using LibraryDesktop.Infrastructure.Command.Base.Sync;
 using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.Models.Settings;
 using LibraryDesktop.Models.Theme;
@@ -12,114 +11,56 @@ namespace LibraryDesktop.ViewModels.PagesViewModels
 {
     public class SettingsPageViewModel : BaseViewModel
     {
+        private readonly IConfigurationService _configurationService;
+        private readonly IMessageBoxService _messageBoxService;
 
-        #region Свойства
-
-        public List<ThemeEnumItem> ThemeEnums { get; } = new List<ThemeEnumItem>
+        public List<ThemeEnumItem> ThemeEnums { get; } = new()
         {
-            new ThemeEnumItem { ThemeName = "Светлая", ThemeEnum = ThemeEnum.Light},
-            new ThemeEnumItem { ThemeName = "Тёмная", ThemeEnum = ThemeEnum.Dark}
+            new() { ThemeName = "Светлая", ThemeEnum = ThemeEnum.Light },
+            new() { ThemeName = "Тёмная", ThemeEnum = ThemeEnum.Dark }
         };
 
+        public ThemeEnumItem? SelectedTheme { get; set; }
 
-        #region SelectedTheme : ThemeEnumItem - Выбранная тема
-
-        /// <summary> Выбранная тема </summary>
-        private ThemeEnumItem _selectedTheme;
-
-        /// <summary> Выбранная тема </summary>
-        public ThemeEnumItem SelectedTheme
-        {
-            get { return _selectedTheme; }
-            set
-            {
-                Set(ref _selectedTheme, value);
-            }
-        }
-        #endregion
-
-
-        #region HostAddress : string - Адрес подключения к апи
-
-        /// <summary> Адрес подключения к апи </summary>
-        private string _hostAddress = CurrentSettings.Settings.Api.BaseUrl;
-
-        /// <summary> Адрес подключения к апи </summary>
-        public string HostAddress
-        {
-            get { return _hostAddress; }
-            set
-            {
-                Set(ref _hostAddress, value);
-            }
-        }
-        #endregion
-
-
-        #region TimeOut : string - Таймаут подключения к апи
-
-        /// <summary> Таймаут подключения к апи </summary>
-        private string _timeOut = CurrentSettings.Settings.Api.TimeoutSeconds.ToString();
-
-        /// <summary> Таймаут подключения к апи </summary>
-        public string TimeOut
-        {
-            get { return _timeOut; }
-            set
-            {
-                Set(ref _timeOut, value);
-            }
-        }
-        #endregion
-
-        #endregion
-
-        #region Команды
-
+        public string HostAddress { get; set; }
+        public string TimeOut { get; set; }
 
         public ICommand SaveSettings { get; }
 
-        private bool CanSaveSettingsExecute(object p) => true;
-        private void OnSaveSettingsExecute(object p)
-        {
-            SettingsModel settings = CurrentSettings.Settings;
-
-            settings.Theme = _selectedTheme.ThemeEnum;
-            settings.Api.BaseUrl = _hostAddress;
-            settings.Api.TimeoutSeconds = Convert.ToInt32(_timeOut);
-
-            CurrentSettings.Settings = settings;
-
-            _configurationService.SaveSettings();
-            _configurationService.LoadAndApplySettings();
-        }
-
-
-        #endregion
-
-        #region Конструктор
         public SettingsPageViewModel() { }
+
         public SettingsPageViewModel(
             IUserDialogService userDialogService,
             IConfigurationService configurationService,
-            IMessageBoxService messageBoxService
-        )
+            IMessageBoxService messageBoxService)
         {
-            var currentTheme = CurrentSettings.Settings.Theme; 
-            SelectedTheme = ThemeEnums
-                .FirstOrDefault(te => te.ThemeEnum == currentTheme) ?? ThemeEnums[0];
-
-            _messageBoxService = messageBoxService;
-            _userDialogService = userDialogService;
             _configurationService = configurationService;
+            _messageBoxService = messageBoxService;
 
-            SaveSettings = new LambdaCommand(OnSaveSettingsExecute, CanSaveSettingsExecute);
+            var settings = CurrentSettings.Settings;
+            HostAddress = settings.Api.BaseUrl;
+            TimeOut = settings.Api.TimeoutSeconds.ToString();
+            SelectedTheme = ThemeEnums.FirstOrDefault(t => t.ThemeEnum == settings.Theme) ?? ThemeEnums[0];
+
+            SaveSettings = new LambdaCommand(OnSaveSettingsExecute);
         }
 
-        private IUserDialogService _userDialogService;
-        private IConfigurationService _configurationService;
-        private IMessageBoxService _messageBoxService;
-        #endregion
+        private void OnSaveSettingsExecute(object _)
+        {
+            if (!int.TryParse(TimeOut, out var timeout) || timeout <= 0)
+            {
+                _messageBoxService.ShowError("Таймаут должен быть положительным числом.");
+                return;
+            }
 
+            var settings = CurrentSettings.Settings;
+            settings.Theme = SelectedTheme?.ThemeEnum ?? ThemeEnum.Light;
+            settings.Api.BaseUrl = HostAddress;
+            settings.Api.TimeoutSeconds = timeout;
+
+            CurrentSettings.Settings = settings;
+            _configurationService.SaveSettings();
+            _configurationService.LoadAndApplySettings();
+        }
     }
 }

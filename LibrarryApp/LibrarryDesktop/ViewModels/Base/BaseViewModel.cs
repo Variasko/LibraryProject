@@ -5,6 +5,7 @@ namespace LibraryDesktop.ViewModels.Base
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public BaseViewModel() { }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)

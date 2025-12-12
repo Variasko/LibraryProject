@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" Height="400" Width="400"
         Background="{DynamicResource ApplicationBackground}">
+    
     <d:Window.DataContext>
         <vm:SignInWindowViewModel/>
     </d:Window.DataContext>
