@@ -9,7 +9,7 @@ main_router = APIRouter()
 
 main_router.include_router(database_router.database_router)
 main_router.include_router(author_router.author_router)
-main_router.include_router(author_router.author_router)
+main_router.include_router(auth_router.auth_router)
 main_router.include_router(book_router.book_router)
 main_router.include_router(book_incoming_router.book_incoming_router)
 main_router.include_router(employee_router.employee_router)
