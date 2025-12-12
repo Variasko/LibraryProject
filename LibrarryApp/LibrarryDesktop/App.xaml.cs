@@ -19,8 +19,6 @@ public partial class App : Application
 
         _serviceProvider = InitializeServices();
         _serviceProvider.GetRequiredService<IUserDialogService>().SwitchWindow<SignInWindow>();
-
-        _serviceProvider.GetRequiredService<IConfigurationService>().LoadAndApplySettings();
     }
 
     protected override void OnExit(ExitEventArgs e)
