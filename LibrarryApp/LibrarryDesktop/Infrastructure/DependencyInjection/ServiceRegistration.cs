@@ -53,6 +53,7 @@ namespace LibraryDesktop.Infrastructure.DependencyInjection
         private static IServiceCollection RegisterApiServices(this IServiceCollection services)
         {
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IBookService, BookService>();
             services.AddTransient<IPostService, PostService>();
 
             return services;
