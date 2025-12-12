@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace LibrarryDesktop.Infrastructure.Command.Base.Async
+namespace LibraryDesktop.Infrastructure.Command.Base.Async
 {
     public abstract class AsyncCommand : ICommand
     {

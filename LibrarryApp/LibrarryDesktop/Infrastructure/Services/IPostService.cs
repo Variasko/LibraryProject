@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.ApiResponceModels;
+﻿using LibraryDesktop.Models.ApiResponceModels;
 
-namespace LibrarryDesktop.Infrastructure.Services
+namespace LibraryDesktop.Infrastructure.Services
 {
     public interface IPostService
     {

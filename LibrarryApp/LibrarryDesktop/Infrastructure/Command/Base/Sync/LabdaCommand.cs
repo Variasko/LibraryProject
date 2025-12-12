@@ -1,4 +1,4 @@
-﻿namespace LibrarryDesktop.Infrastructure.Command.Base.Sync
+﻿namespace LibraryDesktop.Infrastructure.Command.Base.Sync
 {
     public class LambdaCommand : Command
     {

@@ -1,4 +1,4 @@
-﻿namespace LibrarryDesktop.Infrastructure.Command.Base.Async
+﻿namespace LibraryDesktop.Infrastructure.Command.Base.Async
 {
     /// <summary>
      /// Асинхронная команда, реализующая шаблон Lambda.

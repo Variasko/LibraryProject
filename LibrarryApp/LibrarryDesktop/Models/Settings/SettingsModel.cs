@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.Theme;
+﻿using LibraryDesktop.Models.Theme;
 
-namespace LibrarryDesktop.Models.Settings
+namespace LibraryDesktop.Models.Settings
 {
     public class SettingsModel
     {

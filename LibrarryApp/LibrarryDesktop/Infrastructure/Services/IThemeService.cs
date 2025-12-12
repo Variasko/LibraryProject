@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.Theme;
+﻿using LibraryDesktop.Models.Theme;
 
-namespace LibrarryDesktop.Infrastructure.Services
+namespace LibraryDesktop.Infrastructure.Services
 {
     public interface IThemeService
     {

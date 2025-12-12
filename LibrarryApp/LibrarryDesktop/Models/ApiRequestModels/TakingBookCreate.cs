@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace LibrarryDesktop.Models.ApiRequestModels
+namespace LibraryDesktop.Models.ApiRequestModels
 {
     public class TakingBookCreate
     {

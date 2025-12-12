@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace LibrarryDesktop.Heplers
+namespace LibraryDesktop.Heplers
 {
     public class MessageBoxHelper
     {

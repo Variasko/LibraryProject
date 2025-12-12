@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:helpers="clr-namespace:LibrarryDesktop.Helpers">
+                    xmlns:helpers="clr-namespace:LibraryDesktop.Helpers">
 
     <!-- ######################## -->
     <!-- # Базовый стиль TextBox с Hint # -->

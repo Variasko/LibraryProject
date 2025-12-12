@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.ApiResponceModels;
+﻿using LibraryDesktop.Models.ApiResponceModels;
 
-namespace LibrarryDesktop.Statics
+namespace LibraryDesktop.Statics
 {
     public static class CurrentSession
     {

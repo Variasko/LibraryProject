@@ -1,11 +1,11 @@
-﻿using LibrarryDesktop.Helpers; // очепятка, менять не буду
-using LibrarryDesktop.Infrastructure.DependencyInjection;
-using LibrarryDesktop.Infrastructure.Services;
-using LibrarryDesktop.Statics;
+﻿using LibraryDesktop.Helpers; // очепятка, менять не буду
+using LibraryDesktop.Infrastructure.DependencyInjection;
+using LibraryDesktop.Infrastructure.Services;
+using LibraryDesktop.Statics;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
-namespace LibrarryDesktop;
+namespace LibraryDesktop;
 
 public partial class App : Application
 {

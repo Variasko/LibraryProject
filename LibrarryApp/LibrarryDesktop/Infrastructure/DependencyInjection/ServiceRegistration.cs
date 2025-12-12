@@ -1,17 +1,17 @@
-﻿using LibrarryDesktop.Helpers;
-using LibrarryDesktop.Infrastructure.Services;
-using LibrarryDesktop.Infrastructure.Services.Implementation;
-using LibrarryDesktop.Statics;
-using LibrarryDesktop.ViewModels.PagesViewModels;
-using LibrarryDesktop.ViewModels.WindowsViewModels;
-using LibrarryDesktop.Views.Pages;
-using LibrarryDesktop.Views.Windows;
+﻿using LibraryDesktop.Helpers;
+using LibraryDesktop.Infrastructure.Services;
+using LibraryDesktop.Infrastructure.Services.Implementation;
+using LibraryDesktop.Statics;
+using LibraryDesktop.ViewModels.PagesViewModels;
+using LibraryDesktop.ViewModels.WindowsViewModels;
+using LibraryDesktop.Views.Pages;
+using LibraryDesktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 
-namespace LibrarryDesktop.Infrastructure.DependencyInjection
+namespace LibraryDesktop.Infrastructure.DependencyInjection
 {
-    public static class ServiceRegistrator
+    public static class ServiceRegistration
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
         {

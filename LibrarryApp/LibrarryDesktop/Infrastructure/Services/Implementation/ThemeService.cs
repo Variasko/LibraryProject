@@ -1,7 +1,7 @@
-﻿using LibrarryDesktop.Models.Theme;
+﻿using LibraryDesktop.Models.Theme;
 using System.Windows;
 
-namespace LibrarryDesktop.Infrastructure.Services.Implementation
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
     public class ThemeService : IThemeService
     {

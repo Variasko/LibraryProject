@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.Settings;
+﻿using LibraryDesktop.Models.Settings;
 
-namespace LibrarryDesktop.Statics
+namespace LibraryDesktop.Statics
 {
     public static class CurrentSettings
     {

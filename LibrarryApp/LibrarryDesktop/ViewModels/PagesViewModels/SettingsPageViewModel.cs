@@ -1,15 +1,15 @@
-﻿using LibrarryDesktop.Helpers;
-using LibrarryDesktop.Heplers;
-using LibrarryDesktop.Infrastructure.Command.Base.Sync;
-using LibrarryDesktop.Infrastructure.Services;
-using LibrarryDesktop.Models.Settings;
-using LibrarryDesktop.Models.Theme;
-using LibrarryDesktop.Statics;
-using LibrarryDesktop.ViewModels.Base;
+﻿using LibraryDesktop.Helpers;
+using LibraryDesktop.Heplers;
+using LibraryDesktop.Infrastructure.Command.Base.Sync;
+using LibraryDesktop.Infrastructure.Services;
+using LibraryDesktop.Models.Settings;
+using LibraryDesktop.Models.Theme;
+using LibraryDesktop.Statics;
+using LibraryDesktop.ViewModels.Base;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace LibrarryDesktop.ViewModels.PagesViewModels
+namespace LibraryDesktop.ViewModels.PagesViewModels
 {
     public class SettingsPageViewModel : BaseViewModel
     {

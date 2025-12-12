@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.ViewModels.Base;
+﻿using LibraryDesktop.ViewModels.Base;
 
-namespace LibrarryDesktop.ViewModels.WindowsViewModels
+namespace LibraryDesktop.ViewModels.WindowsViewModels
 {
     public class ViewTestWindowViewModel : BaseViewModel
     {

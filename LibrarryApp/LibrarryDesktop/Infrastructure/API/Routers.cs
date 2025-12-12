@@ -1,4 +1,4 @@
-﻿namespace LibrarryDesktop.Infrastructure.API
+﻿namespace LibraryDesktop.Infrastructure.API
 {
     /// <summary>
     /// Содержит константы URL-путей к эндпоинтам API.

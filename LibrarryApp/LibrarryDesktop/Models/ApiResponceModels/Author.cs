@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace LibrarryDesktop.Models.ApiResponceModels
+namespace LibraryDesktop.Models.ApiResponceModels
 {
     public class Author
     {

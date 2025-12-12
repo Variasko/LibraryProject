@@ -1,10 +1,10 @@
-﻿using LibrarryDesktop.Views.Pages;
-using LibrarryDesktop.Views.Windows;
+﻿using LibraryDesktop.Views.Pages;
+using LibraryDesktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace LibrarryDesktop.Infrastructure.Services.Implementation
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
     public class UserDialogService : IUserDialogService
     {

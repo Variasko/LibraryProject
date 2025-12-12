@@ -1,6 +1,6 @@
-﻿using LibrarryDesktop.Models.Settings;
+﻿using LibraryDesktop.Models.Settings;
 
-namespace LibrarryDesktop.Infrastructure.Services
+namespace LibraryDesktop.Infrastructure.Services
 {
     public interface IConfigurationService
     {

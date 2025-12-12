@@ -1,4 +1,4 @@
-﻿namespace LibrarryDesktop.Models.Settings
+﻿namespace LibraryDesktop.Models.Settings
 {
     public class ApiSettings
     {

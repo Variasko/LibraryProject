@@ -1,10 +1,10 @@
-﻿using LibrarryDesktop.Helpers;
-using LibrarryDesktop.Models.Settings;
-using LibrarryDesktop.Statics;
+﻿using LibraryDesktop.Helpers;
+using LibraryDesktop.Models.Settings;
+using LibraryDesktop.Statics;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace LibrarryDesktop.Infrastructure.Services.Implementation
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
     public class ConfigurationService : IConfigurationService
     {

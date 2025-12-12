@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace LibrarryDesktop.ViewModels.Base
+namespace LibraryDesktop.ViewModels.Base
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

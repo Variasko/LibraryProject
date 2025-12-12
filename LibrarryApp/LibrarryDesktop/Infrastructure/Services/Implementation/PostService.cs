@@ -1,9 +1,9 @@
-﻿using LibrarryDesktop.Infrastructure.API;
-using LibrarryDesktop.Models.ApiResponceModels;
+﻿using LibraryDesktop.Infrastructure.API;
+using LibraryDesktop.Models.ApiResponceModels;
 using Newtonsoft.Json;
 using System.Net.Http;
 
-namespace LibrarryDesktop.Infrastructure.Services.Implementation
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
     public class PostService : IPostService
     {

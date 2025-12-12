@@ -1,4 +1,4 @@
-﻿namespace LibrarryDesktop.Models.Theme
+﻿namespace LibraryDesktop.Models.Theme
 {
     public enum ThemeEnum
     {

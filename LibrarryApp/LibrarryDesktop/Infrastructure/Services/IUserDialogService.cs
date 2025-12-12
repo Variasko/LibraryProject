@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace LibrarryDesktop.Infrastructure.Services
+namespace LibraryDesktop.Infrastructure.Services
 {
     public interface IUserDialogService
     {

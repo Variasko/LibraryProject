@@ -1,11 +1,11 @@
-﻿using LibrarryDesktop.Infrastructure.API;
-using LibrarryDesktop.Models.ApiRequestModels;
-using LibrarryDesktop.Models.ApiResponceModels;
+﻿using LibraryDesktop.Infrastructure.API;
+using LibraryDesktop.Models.ApiRequestModels;
+using LibraryDesktop.Models.ApiResponceModels;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
 
-namespace LibrarryDesktop.Infrastructure.Services.Implementation
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
     public class AuthService : IAuthService
     {

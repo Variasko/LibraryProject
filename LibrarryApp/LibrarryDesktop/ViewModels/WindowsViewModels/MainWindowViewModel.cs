@@ -1,8 +1,8 @@
-﻿using LibrarryDesktop.Infrastructure.Services;
-using LibrarryDesktop.ViewModels.Base;
+﻿using LibraryDesktop.Infrastructure.Services;
+using LibraryDesktop.ViewModels.Base;
 using System.Windows.Controls;
 
-namespace LibrarryDesktop.ViewModels.WindowsViewModels
+namespace LibraryDesktop.ViewModels.WindowsViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {

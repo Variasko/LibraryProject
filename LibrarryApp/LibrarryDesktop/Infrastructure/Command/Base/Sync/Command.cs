@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace LibrarryDesktop.Infrastructure.Command.Base.Sync
+namespace LibraryDesktop.Infrastructure.Command.Base.Sync
 {
     public abstract class Command : ICommand
     {
