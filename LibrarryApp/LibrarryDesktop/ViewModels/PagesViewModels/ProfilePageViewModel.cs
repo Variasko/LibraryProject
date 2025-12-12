@@ -64,7 +64,7 @@ namespace LibraryDesktop.ViewModels.PagesViewModels
 		#region PostName : string - Название должности зашедшего
 
 		/// <summary> Название должности зашедшего </summary>
-		private string _postName = CurrentSession.CurrentPost.Name;
+		private string _postName = CurrentSession.CurrentEmployee.Post.Name;
 
 		/// <summary> Название должности зашедшего </summary>
 		public string PostName

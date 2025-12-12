@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import Employee
 from src.schemas.Auth.auth_model import AuthModel
@@ -13,7 +13,8 @@ def auth(authorizationData: AuthModel, session: Session = Depends(get_session)):
     # допущение: пароли не хешируем
     stmt = (select(Employee)
             .where(Employee.login == authorizationData.login)
-            .where(Employee.password == authorizationData.password))
+            .where(Employee.password == authorizationData.password)
+            .options(selectinload(Employee.post)))
     result = session.execute(stmt)
     employee = result.scalar_one_or_none()
     if not employee:

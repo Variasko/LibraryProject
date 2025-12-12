@@ -77,10 +77,8 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
                     _messageBoxService.ShowError("Неверный логин или пароль!");
                     return;
                 }
-                Post post = await _postService.GetPostById(employee.PostId ?? -1);
 
                 CurrentSession.CurrentEmployee = employee;
-                CurrentSession.CurrentPost = post;
 
                 _userDialogService.SwitchWindow<MainWindow>();
             }
