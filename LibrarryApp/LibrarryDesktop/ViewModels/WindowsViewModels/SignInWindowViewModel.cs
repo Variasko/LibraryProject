@@ -1,10 +1,10 @@
-﻿using LibraryDesktop.Heplers;
-using LibraryDesktop.Infrastructure.Command.Base.Async;
+﻿using LibraryDesktop.Infrastructure.Command.Base.Async;
 using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.Models.ApiRequestModels;
 using LibraryDesktop.Models.ApiResponceModels;
 using LibraryDesktop.Statics;
 using LibraryDesktop.ViewModels.Base;
+using LibraryDesktop.Views.Windows;
 using System.Net.Http;
 using System.Windows.Input;
 
@@ -74,7 +74,7 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
                 var employee = await _authService.AuthAsync(authRequest);
                 if (employee == null)
                 {
-                    _messageBoxHelper.ShowError("Неверный логин или пароль!");
+                    _messageBoxService.ShowError("Неверный логин или пароль!");
                     return;
                 }
                 Post post = await _postService.GetPostById(employee.PostId ?? -1);
@@ -82,15 +82,15 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
                 CurrentSession.CurrentEmployee = employee;
                 CurrentSession.CurrentPost = post;
 
-                _userDialogService.SwitchToMainWindow();
+                _userDialogService.SwitchWindow<MainWindow>();
             }
             catch (HttpRequestException ex)
             {
-                _messageBoxHelper.ShowError($"Ошибка подключения к серверу: {ex.Message}");
+                _messageBoxService.ShowError($"Ошибка подключения к серверу: {ex.Message}");
             }
             catch (Exception ex)
             {
-                _messageBoxHelper.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
+                _messageBoxService.ShowError($"Произошла непредвиденная ошибка: {ex.Message}");
             }
         }
         #endregion
@@ -102,21 +102,22 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
         public SignInWindowViewModel() { }
         public SignInWindowViewModel(
 				IUserDialogService userDialogService,
+                IMessageBoxService messageBoxService,
 				IAuthService authService,
                 IPostService postService
 			)
         {
-			_messageBoxHelper = new MessageBoxHelper();
-
+            _messageBoxService = messageBoxService;
             _userDialogService = userDialogService;
 			_authService = authService;
             _postService = postService;
 
 			SignInCommand = new LambdaAsyncCommand(OnSignInCommandExecute, CanSignInCommandExecute);
         }
-		private MessageBoxHelper _messageBoxHelper;
 
         private IUserDialogService _userDialogService;
+        private IMessageBoxService _messageBoxService;
+
 		private IAuthService _authService;
         private IPostService _postService;
         #endregion

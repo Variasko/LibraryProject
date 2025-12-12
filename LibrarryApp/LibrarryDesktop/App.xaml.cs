@@ -1,7 +1,8 @@
-﻿using LibraryDesktop.Helpers; // очепятка, менять не буду
+﻿using LibraryDesktop.Helpers;
 using LibraryDesktop.Infrastructure.DependencyInjection;
 using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.Statics;
+using LibraryDesktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
@@ -17,7 +18,7 @@ public partial class App : Application
         base.OnStartup(e);
 
         _serviceProvider = InitializeServices();
-        _serviceProvider.GetRequiredService<IUserDialogService>().OpenSignInWindow();
+        _serviceProvider.GetRequiredService<IUserDialogService>().SwitchWindow<SignInWindow>();
 
         _serviceProvider.GetRequiredService<IConfigurationService>().LoadAndApplySettings();
     }

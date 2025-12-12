@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 
-namespace LibraryDesktop.Heplers
+namespace LibraryDesktop.Infrastructure.Services.Implementation
 {
-    public class MessageBoxHelper
+    public class MessageBoxService : IMessageBoxService
     {
         public void ShowInfo(string message)
         {

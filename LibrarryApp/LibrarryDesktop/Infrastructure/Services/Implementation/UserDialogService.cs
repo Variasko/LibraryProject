@@ -10,64 +10,33 @@ namespace LibraryDesktop.Infrastructure.Services.Implementation
     {
         private readonly IServiceProvider _serviceProvider;
 
+        private Window _currentWindow;
+
         public UserDialogService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
-        public void OpenSignInWindow()
+        public void SwitchWindow<T>() where T : Window
         {
-            var window = _serviceProvider.GetRequiredService<SignInWindow>();
-            window.Show();
-        }
-
-        public void SwitchToMainWindow()
-        {
-            var main = _serviceProvider.GetRequiredService<MainWindow>();
-            main.Show();
-
-            foreach (Window window in Application.Current.Windows)
+            try
             {
-                if (window != main)
-                    window.Close();
-            }
-        }
+                var window = _serviceProvider.GetRequiredService<T>();
 
-        public void SwitchToSignInWindow()
-        {
-            var signIn = _serviceProvider.GetRequiredService<SignInWindow>();
+                if (_currentWindow != null) _currentWindow.Close();
+                
+                _currentWindow = window;
+                _currentWindow.Show();
 
-            foreach (Window window in Application.Current.Windows)
+            } catch (InvalidOperationException ex)
             {
-                if (window != signIn)
-                    window.Close();
+                _serviceProvider.GetRequiredService<IMessageBoxService>().ShowError(ex.Message);
             }
-
-            OpenSignInWindow();
+            
         }
-
-        public void SwitchToTestWindow()
+        public Page GetPage<T>() where T : Page
         {
-            var testWindow = _serviceProvider.GetRequiredService<ViewTestWindow>();
-            testWindow.Show();
-
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window != testWindow)
-                    window.Close();
-            }
-        }
-        public Page GetProfilePage()
-        {
-            return _serviceProvider.GetRequiredService<ProfilePage>();
-        }
-        public Page GetSettingsPage()
-        {
-            return _serviceProvider.GetRequiredService<SettingsPage>();
-        }
-        public Page GetBooksPage()
-        {
-            return _serviceProvider.GetRequiredService<BooksPage>();
+            return _serviceProvider.GetRequiredService<T>();
         }
     }
 }

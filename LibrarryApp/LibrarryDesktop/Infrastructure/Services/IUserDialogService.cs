@@ -1,15 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace LibraryDesktop.Infrastructure.Services
 {
     public interface IUserDialogService
     {
-        void OpenSignInWindow();
-        void SwitchToSignInWindow();
-        void SwitchToMainWindow();
-        void SwitchToTestWindow();
-        Page GetProfilePage();
-        Page GetSettingsPage();
-        Page GetBooksPage();
+        void SwitchWindow<T>() where T : Window;
+        Page GetPage<T>() where T : Page;
     }
 }

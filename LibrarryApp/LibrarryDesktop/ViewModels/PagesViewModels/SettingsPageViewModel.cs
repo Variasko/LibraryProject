@@ -1,5 +1,4 @@
 ﻿using LibraryDesktop.Helpers;
-using LibraryDesktop.Heplers;
 using LibraryDesktop.Infrastructure.Command.Base.Sync;
 using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.Models.Settings;
@@ -102,24 +101,24 @@ namespace LibraryDesktop.ViewModels.PagesViewModels
         public SettingsPageViewModel() { }
         public SettingsPageViewModel(
             IUserDialogService userDialogService,
-            IConfigurationService configurationService
+            IConfigurationService configurationService,
+            IMessageBoxService messageBoxService
         )
         {
             var currentTheme = CurrentSettings.Settings.Theme; 
             SelectedTheme = ThemeEnums
-                .FirstOrDefault(te => te.ThemeEnum == currentTheme) ?? ThemeEnums[0]; 
+                .FirstOrDefault(te => te.ThemeEnum == currentTheme) ?? ThemeEnums[0];
 
-            _messageBoxHelper = new MessageBoxHelper();
-
+            _messageBoxService = messageBoxService;
             _userDialogService = userDialogService;
             _configurationService = configurationService;
 
             SaveSettings = new LambdaCommand(OnSaveSettingsExecute, CanSaveSettingsExecute);
         }
-        private MessageBoxHelper _messageBoxHelper;
 
         private IUserDialogService _userDialogService;
         private IConfigurationService _configurationService;
+        private IMessageBoxService _messageBoxService;
         #endregion
 
     }

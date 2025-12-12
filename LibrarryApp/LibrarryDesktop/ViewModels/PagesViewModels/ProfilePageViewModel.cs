@@ -2,6 +2,7 @@
 using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.Statics;
 using LibraryDesktop.ViewModels.Base;
+using LibraryDesktop.Views.Windows;
 using System.Windows.Input;
 
 namespace LibraryDesktop.ViewModels.PagesViewModels
@@ -88,7 +89,7 @@ namespace LibraryDesktop.ViewModels.PagesViewModels
         private bool CanSignOutCommandExecute(object p) => true;
         private void OnSignOutCommandExecute(object p)
         {
-            _userDialogService.SwitchToSignInWindow();
+            _userDialogService.SwitchWindow<SignInWindow>();
         }
 
         #endregion

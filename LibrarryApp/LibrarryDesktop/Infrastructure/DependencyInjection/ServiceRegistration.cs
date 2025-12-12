@@ -29,6 +29,7 @@ namespace LibraryDesktop.Infrastructure.DependencyInjection
             services.AddSingleton<IUserDialogService, UserDialogService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
             services.AddSingleton<IThemeService, ThemeService>();
+            services.AddSingleton<IMessageBoxService, MessageBoxService>();
             return services;
         }
 

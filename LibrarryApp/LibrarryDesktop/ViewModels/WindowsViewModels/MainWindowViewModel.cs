@@ -1,5 +1,6 @@
 ﻿using LibraryDesktop.Infrastructure.Services;
 using LibraryDesktop.ViewModels.Base;
+using LibraryDesktop.Views.Pages;
 using System.Windows.Controls;
 
 namespace LibraryDesktop.ViewModels.WindowsViewModels
@@ -33,6 +34,22 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
         }
         #endregion
 
+        #region BooksPage : Page - Страница со всеми книгами
+
+        /// <summary> Страница со всеми книгами </summary>
+        private Page _booksPage;
+
+        /// <summary> Страница со всеми книгами </summary>
+        public Page BooksPage
+        {
+            get { return _booksPage; }
+            set
+            {
+                Set(ref _booksPage, value);
+            }
+        }
+        #endregion
+
         #region SettingsPage : Page - Страница настроек
 
         /// <summary> Страница настроек </summary>
@@ -60,8 +77,9 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
         {
             _userDialogService = userDialogService;
 
-            _profilePage = _userDialogService.GetProfilePage();
-            _settingsPage = _userDialogService.GetSettingsPage();
+            _profilePage = _userDialogService.GetPage<ProfilePage>();
+            _booksPage = _userDialogService.GetPage<BooksPage>():
+            _settingsPage = _userDialogService.GetPage<SettingsPage>();
         }
         private IUserDialogService _userDialogService;
         #endregion
