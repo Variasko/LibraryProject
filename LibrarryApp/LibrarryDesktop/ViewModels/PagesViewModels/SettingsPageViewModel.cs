@@ -92,7 +92,7 @@ namespace LibrarryDesktop.ViewModels.PagesViewModels
             CurrentSettings.Settings = settings;
 
             _configurationService.SaveSettings();
-            _configurationService.ApplySettings();
+            _configurationService.LoadAndApplySettings();
         }
 
 

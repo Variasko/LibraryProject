@@ -9,8 +9,6 @@ namespace LibrarryDesktop;
 
 public partial class App : Application
 {
-    private ThemeHelper _th = new ThemeHelper();
-    private SettingHelper _sh = new SettingHelper(new ThemeHelper());
 
     private IServiceProvider _serviceProvider;
 
@@ -18,10 +16,10 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-        _sh.ApplySettings();
-
         _serviceProvider = InitializeServices();
         _serviceProvider.GetRequiredService<IUserDialogService>().OpenSignInWindow();
+
+        _serviceProvider.GetRequiredService<IConfigurationService>().LoadAndApplySettings();
     }
 
     protected override void OnExit(ExitEventArgs e)

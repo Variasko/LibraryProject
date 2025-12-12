@@ -27,9 +27,8 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
         private static IServiceCollection RegisterCoreServices(this IServiceCollection services)
         {
             services.AddSingleton<IUserDialogService, UserDialogService>();
-            services.AddSingleton<ThemeHelper>();
-            services.AddSingleton<SettingHelper>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
+            services.AddSingleton<IThemeService, ThemeService>();
             return services;
         }
 
@@ -37,6 +36,7 @@ namespace LibrarryDesktop.Infrastructure.DependencyInjection
         {
             services.AddSingleton(serviceProvider =>
             {
+                serviceProvider.GetRequiredService<IConfigurationService>().LoadAndApplySettings();
                 var settings = CurrentSettings.Settings.Api;
 
                 var httpClient = new HttpClient();
