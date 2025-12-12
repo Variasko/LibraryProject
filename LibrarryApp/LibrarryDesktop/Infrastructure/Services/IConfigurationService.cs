@@ -4,7 +4,7 @@ namespace LibrarryDesktop.Infrastructure.Services
 {
     public interface IConfigurationService
     {
-        void ApplySettings();
+        void LoadAndApplySettings();
         void SaveSettings();
     }
 }
