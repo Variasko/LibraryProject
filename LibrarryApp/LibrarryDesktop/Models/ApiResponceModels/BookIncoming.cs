@@ -5,12 +5,19 @@ namespace LibraryDesktop.Models.ApiResponceModels
     public class BookIncoming
     {
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
+
         [JsonProperty("book_id")]
-        public int? BookId { get; set; }
+        public int BookId { get; set; }
+
         [JsonProperty("amount")]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
+
         [JsonProperty("incoming_date")]
-        public DateTime IncomingDate { get; set; }
+        public DateOnly IncomingDate { get; set; }
+
+        // Navigation
+        [JsonProperty("book")]
+        public Book Book { get; set; } = new();
     }
 }

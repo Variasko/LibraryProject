@@ -78,7 +78,7 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
             _userDialogService = userDialogService;
 
             _profilePage = _userDialogService.GetPage<ProfilePage>();
-            _booksPage = _userDialogService.GetPage<BooksPage>():
+            _booksPage = _userDialogService.GetPage<BooksPage>();
             _settingsPage = _userDialogService.GetPage<SettingsPage>();
         }
         private IUserDialogService _userDialogService;
