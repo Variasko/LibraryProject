@@ -1,7 +1,7 @@
 # src/api/routers/book_incoming_router.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import BookIncoming, Book
 from src.schemas.BookIncoming.book_incoming_create import BookIncomingCreate
@@ -33,10 +33,12 @@ def _get_book_or_404(session: Session, book_id: int) -> Book:
     description="Возвращает список всех поступлений книг",
 )
 def get_book_incomings(session: Session = Depends(get_session)):
-    stmt = select(BookIncoming)
+    stmt = (
+        select(BookIncoming)
+        .options(selectinload(BookIncoming.book).selectinload(Book.author))
+    )
     result = session.execute(stmt)
-    book_incomings = result.scalars().all()
-    return book_incomings
+    return result.scalars().all()
 
 
 @book_incoming_router.get(
@@ -45,13 +47,16 @@ def get_book_incomings(session: Session = Depends(get_session)):
     description="Возвращает поступление с указанным ID",
 )
 def get_book_incoming(incoming_id: int, session: Session = Depends(get_session)):
-    stmt = select(BookIncoming).where(BookIncoming.id == incoming_id)
+    stmt = (
+        select(BookIncoming)
+        .where(BookIncoming.id == incoming_id)
+        .options(selectinload(BookIncoming.book).selectinload(Book.author))
+    )
     result = session.execute(stmt)
-    book_incoming = result.scalars().first()
-    if not book_incoming:
-        from fastapi import HTTPException
+    incoming = result.scalars().first()
+    if not incoming:
         raise HTTPException(status_code=404, detail="Поступление не найдено")
-    return book_incoming
+    return incoming
 
 
 @book_incoming_router.post(
@@ -64,7 +69,6 @@ def add_book_incoming(incoming: BookIncomingCreate, session: Session = Depends(g
         from fastapi import HTTPException
         raise HTTPException(status_code=400, detail="Количество книг в поступлении должно быть больше 0")
 
-    # Проверяем, существует ли книга
     _get_book_or_404(session, incoming.book_id)
 
     new_incoming = BookIncoming(**incoming.model_dump())
@@ -91,11 +95,9 @@ def update_book_incoming(incoming_id: int, new_incoming: BookIncomingUpdate, ses
         from fastapi import HTTPException
         raise HTTPException(status_code=400, detail="Количество книг в поступлении должно быть больше 0")
 
-    # Проверяем, если меняется книга
     if new_incoming.book_id is not None:
         _get_book_or_404(session, new_incoming.book_id)
 
-    # Обновляем только непустые поля
     for var, value in new_incoming.model_dump(exclude_unset=True).items():
         setattr(incoming, var, value)
 

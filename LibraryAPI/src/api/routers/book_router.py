@@ -1,11 +1,10 @@
-# src/api/routers/book_router.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import Book, Author
 from src.schemas.Book.book_create import BookCreate
-from src.schemas.Book.book_update import BookUpdate  # <-- Новый импорт
+from src.schemas.Book.book_update import BookUpdate
 
 book_router = APIRouter(
     prefix="/books",
@@ -29,7 +28,7 @@ def _get_author_or_404(session: Session, author_id: int) -> Author:
     description="Возвращает список всех книг в библиотеке",
 )
 def get_books(session: Session = Depends(get_session)):
-    stmt = select(Book)
+    stmt = select(Book).options(selectinload(Book.author))
     result = session.execute(stmt)
     books = result.scalars().all()
     return books
@@ -41,11 +40,10 @@ def get_books(session: Session = Depends(get_session)):
     description="Возвращает книгу с указанным ID в библиотеке",
 )
 def get_book(book_id: int, session: Session = Depends(get_session)):
-    stmt = select(Book).where(Book.id == book_id)
+    stmt = select(Book).where(Book.id == book_id).options(selectinload(Book.author))
     result = session.execute(stmt)
     book = result.scalars().first()
     if not book:
-        from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Книга не найдена")
     return book
 

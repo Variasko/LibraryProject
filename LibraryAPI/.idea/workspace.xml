@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ec9cd53-6441-4b37-88d4-905dfa6d7bfe" name="Changes" comment="" />
+    <list default="true" id="6ec9cd53-6441-4b37-88d4-905dfa6d7bfe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/ViewModels/PagesViewModels/BooksPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/ViewModels/PagesViewModels/BooksPageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/ViewModels/WindowsViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/ViewModels/WindowsViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/Views/Pages/BooksPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../LibrarryApp/LibrarryDesktop/Views/Pages/BooksPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/routers/author_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/routers/author_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/routers/book_incoming_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/routers/book_incoming_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/routers/book_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/routers/book_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/routers/employee_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/routers/employee_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/routers/taking_book_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/routers/taking_book_router.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,17 +41,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/caxac/Downloads/python-typing-adder.jar",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/caxac/Downloads/python-typing-adder.jar&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\caxac\OneDrive\Рабочий стол\шарповые проектики\LibraryProject\LibraryAPI" />

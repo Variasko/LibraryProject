@@ -1,7 +1,6 @@
-# src/api/routers/taking_book_router.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import TakingBook, Book, User, Employee
 from src.schemas.TakingBook.taking_book_create import TakingBookCreate
@@ -49,10 +48,16 @@ def _get_employee_or_404(session: Session, employee_id: int) -> Employee:
     description="Возвращает список всех взятий книг",
 )
 def get_taking_books(session: Session = Depends(get_session)):
-    stmt = select(TakingBook)
+    stmt = (
+        select(TakingBook)
+        .options(
+            selectinload(TakingBook.book).selectinload(Book.author),
+            selectinload(TakingBook.user),
+            selectinload(TakingBook.employee).selectinload(Employee.post)
+        )
+    )
     result = session.execute(stmt)
-    taking_books = result.scalars().all()
-    return taking_books
+    return result.scalars().all()
 
 
 @taking_book_router.get(
@@ -61,13 +66,20 @@ def get_taking_books(session: Session = Depends(get_session)):
     description="Возвращает взятие книги с указанным ID",
 )
 def get_taking_book(taking_id: int, session: Session = Depends(get_session)):
-    stmt = select(TakingBook).where(TakingBook.id == taking_id)
+    stmt = (
+        select(TakingBook)
+        .where(TakingBook.id == taking_id)
+        .options(
+            selectinload(TakingBook.book).selectinload(Book.author),
+            selectinload(TakingBook.user),
+            selectinload(TakingBook.employee).selectinload(Employee.post)
+        )
+    )
     result = session.execute(stmt)
-    taking_book = result.scalars().first()
-    if not taking_book:
-        from fastapi import HTTPException
+    taking = result.scalars().first()
+    if not taking:
         raise HTTPException(status_code=404, detail="Взятие книги не найдено")
-    return taking_book
+    return taking
 
 
 @taking_book_router.post(
@@ -85,7 +97,7 @@ def add_taking_book(taking: TakingBookCreate, session: Session = Depends(get_ses
     session.add(new_taking)
     session.commit()
     session.refresh(new_taking)
-    return new_topic
+    return new_taking
 
 
 @taking_book_router.put(

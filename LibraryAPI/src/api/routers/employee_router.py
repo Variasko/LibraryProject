@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import Employee, Post
 from src.schemas.Employee.employee_create import EmployeeCreate
@@ -32,10 +32,9 @@ def _get_post_or_404(session: Session, post_id: int) -> Post:
     description="Возвращает список всех сотрудников библиотеки",
 )
 def get_employees(session: Session = Depends(get_session)):
-    stmt = select(Employee)
+    stmt = select(Employee).options(selectinload(Employee.post))
     result = session.execute(stmt)
-    employees = result.scalars().all()
-    return employees
+    return result.scalars().all()
 
 
 @employee_router.get(
@@ -44,11 +43,10 @@ def get_employees(session: Session = Depends(get_session)):
     description="Возвращает сотрудника с указанным ID",
 )
 def get_employee(employee_id: int, session: Session = Depends(get_session)):
-    stmt = select(Employee).where(Employee.id == employee_id)
+    stmt = select(Employee).where(Employee.id == employee_id).options(selectinload(Employee.post))
     result = session.execute(stmt)
     employee = result.scalars().first()
     if not employee:
-        from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Сотрудник не найден")
     return employee
 
@@ -59,7 +57,6 @@ def get_employee(employee_id: int, session: Session = Depends(get_session)):
     description="Добавляет нового сотрудника в библиотеку",
 )
 def add_employee(employee: EmployeeCreate, session: Session = Depends(get_session)):
-    # Проверяем, существует ли должность
     _get_post_or_404(session, employee.post_id)
 
     new_employee = Employee(**employee.model_dump())
@@ -82,11 +79,9 @@ def update_employee(employee_id: int, new_employee: EmployeeUpdate, session: Ses
         from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Сотрудник не найден")
 
-    # Проверяем, если меняется должность
     if new_employee.post_id is not None:
         _get_post_or_404(session, new_employee.post_id)
 
-    # Обновляем только непустые поля
     for var, value in new_employee.model_dump(exclude_unset=True).items():
         setattr(employee, var, value)
 

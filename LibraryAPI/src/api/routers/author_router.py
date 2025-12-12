@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, delete
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src.database.database import get_session
 from src.database.models import Author, Book, BookIncoming, TakingBook
 from src.schemas.Author.author_create import AuthorCreate
@@ -15,10 +15,9 @@ author_router = APIRouter(prefix="/authors", tags=["Authors"])
     description="Возвращает список всех авторов в библиотеке",
 )
 def get_authors(session: Session = Depends(get_session)):
-    stmt = select(Author)
+    stmt = select(Author).options(selectinload(Author.books))
     result = session.execute(stmt)
-    authors = result.scalars().all()
-    return authors
+    return result.scalars().all()
 
 
 @author_router.get(
@@ -27,11 +26,10 @@ def get_authors(session: Session = Depends(get_session)):
     description="Возвращает автора с указанным ID в библиотеке",
 )
 def get_author(author_id: int, session: Session = Depends(get_session)):
-    stmt = select(Author).where(Author.id == author_id)
+    stmt = select(Author).where(Author.id == author_id).options(selectinload(Author.books))
     result = session.execute(stmt)
     author = result.scalars().first()
     if not author:
-        from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Автор не найден")
     return author
 
