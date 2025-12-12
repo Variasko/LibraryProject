@@ -10,5 +10,6 @@ namespace LibraryDesktop.Infrastructure.Services
         void SwitchToTestWindow();
         Page GetProfilePage();
         Page GetSettingsPage();
+        Page GetBooksPage();
     }
 }

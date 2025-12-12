@@ -65,6 +65,7 @@ namespace LibraryDesktop.Infrastructure.DependencyInjection
 
             services.AddTransient<ProfilePageViewModel>();
             services.AddTransient<SettingsPageViewModel>();
+            services.AddTransient<BooksPageViewModel>();
 
             return services;
         }
@@ -98,6 +99,10 @@ namespace LibraryDesktop.Infrastructure.DependencyInjection
             services.AddTransient(sp => new SettingsPage
             {
                 DataContext = sp.GetRequiredService<SettingsPageViewModel>()
+            });
+            services.AddTransient(sp => new BooksPage
+            {
+                DataContext = sp.GetRequiredService<BooksPageViewModel>()
             });
 
             return services;

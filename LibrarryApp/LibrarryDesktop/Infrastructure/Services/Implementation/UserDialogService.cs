@@ -65,5 +65,9 @@ namespace LibraryDesktop.Infrastructure.Services.Implementation
         {
             return _serviceProvider.GetRequiredService<SettingsPage>();
         }
+        public Page GetBooksPage()
+        {
+            return _serviceProvider.GetRequiredService<BooksPage>();
+        }
     }
 }
