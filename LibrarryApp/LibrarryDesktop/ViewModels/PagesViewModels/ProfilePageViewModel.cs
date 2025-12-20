@@ -9,10 +9,10 @@ namespace LibraryDesktop.ViewModels.PagesViewModels
 {
     public class ProfilePageViewModel : BaseViewModel
     {
-        public string Surname { get; }
-        public string Name { get; }
-        public string? Patronymic { get; }
-        public string PostName { get; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string? Patronymic { get; set; }
+        public string PostName { get; set; }
 
         public ICommand SignOutCommand { get; }
 
