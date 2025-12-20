@@ -1,29 +1,44 @@
 ﻿using LibraryDesktop.Infrastructure.Services;
+using LibraryDesktop.Models.ApiResponceModels;
 using LibraryDesktop.ViewModels.Base;
 
 namespace LibraryDesktop.ViewModels.PagesViewModels
 {
     public class BooksPageViewModel : BaseViewModel
     {
-        #region Свойства
+        private IBookService _bookService;
 
+
+        #region Books : ObservableCollection - Список книг
+
+        /// <summary> Список книг </summary>
+        private List<Book> _books;
+
+        /// <summary> Список книг </summary>
+        public List<Book> Books
+        {
+            get { return _books; }
+            set
+            {
+                Set(ref _books, value);
+            }
+        }
         #endregion
 
-        #region Команды
-
-        #endregion
-
-        #region Конструктор
-        public BooksPageViewModel(){ }
+        public BooksPageViewModel() { }
         public BooksPageViewModel(
-                IUserDialogService userDialogService
+                IUserDialogService userDialogService,
+                IBookService bookService
             )
         {
-            _userDialogService = userDialogService;
+            _bookService = bookService;
+
+            LoadBooksAsync();
         }
 
-        private IUserDialogService _userDialogService;
-
-        #endregion
+        private async void LoadBooksAsync()
+        {
+            Books = await _bookService.GetBooksAsync();
+        }
     }
 }
