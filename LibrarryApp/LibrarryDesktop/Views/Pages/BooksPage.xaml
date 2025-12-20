@@ -27,7 +27,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Tag="{Binding Id}" Margin="10">
+                        <Border Tag="{Binding Id}" Margin="10"
+                                MouseDown="Border_MouseDown">
                             <StackPanel>
                                 <TextBlock Style="{DynamicResource SubtitleTextBlockStyle}">
                                     <Run Text="Наименование: "/>
