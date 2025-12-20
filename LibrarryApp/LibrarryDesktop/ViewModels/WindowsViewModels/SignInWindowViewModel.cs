@@ -39,7 +39,7 @@ namespace LibraryDesktop.ViewModels.WindowsViewModels
         }
 
         private bool CanSignInCommandExecute(object _) =>
-            !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password); // ← оба поля нужны!
+            !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password);
 
         private async Task OnSignInCommandExecute(object _)
         {
