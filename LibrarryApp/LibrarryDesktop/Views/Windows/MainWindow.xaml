@@ -19,7 +19,11 @@
                    Content="{Binding ProfilePage}"
                    NavigationUIVisibility="Hidden"/>
         </TabItem>
-        <TabItem Header="2"/>
+        <TabItem Header="Книги">
+            <Frame Margin="20"
+                   Content="{Binding BooksPage}"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
         <TabItem Header="Настройки">
             <Frame Margin="20"
                    Content="{Binding SettingsPage}"
